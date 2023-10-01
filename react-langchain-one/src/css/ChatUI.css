@@ -1,0 +1,72 @@
+.chat-container {
+  background-color: var(--dark-color);
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.messages-container {
+  display: flex;
+  max-height: 90vh;
+  flex-direction: column;
+  overflow: scroll;
+}
+
+.message-container {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+}
+
+.message-sender {
+  background-color: var(--primary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--light-color);
+  font-size: large;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 5px;
+  width: 2.5rem;
+  margin-right: 10px;
+}
+
+.message {
+  background-color: transparent;
+  color: var(--light-color);
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.send-message-form {
+  display: flex;
+  background-color: var(--secondary-color);
+  margin-top: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.send-message-form input[type="text"] {
+  flex: 1;
+  background-color: transparent;
+  color: var(--light-color);
+  padding: 10px;
+  font-weight: 500;
+  font-size: inherit;
+}
+
+.send-message-form button[type="submit"] {
+  background-color: transparent ;
+  border: none;
+  font-size: x-large;
+  border-radius: 5px;
+  margin-left: 10px;
+  color: var(--light-color);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

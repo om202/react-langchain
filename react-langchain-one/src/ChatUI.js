@@ -1,0 +1,40 @@
+import React, { useState } from "react";
+import "./css/ChatUI.css";
+import { AiOutlineSend } from "react-icons/ai";
+
+function ChatUI({userName}) {
+
+  const [messages, setMessages] = useState([]);
+  const handleSendMessage = (event) => {
+    event.preventDefault();
+    const input = event.target.elements.message;
+    const newMessage = input.value;
+    setMessages([...messages, newMessage]);
+    input.value = "";
+  };
+
+  return (
+    <div className="chat-container">
+      <div className="messages-container">
+        {messages.map((message, index) => (
+          <div className="message-container">
+            <div className="message-sender">{userName.charAt(0)}</div>
+            <div key={index} className="message">
+              {message}
+            </div>
+          </div>
+        ))}
+      </div>
+      <form onSubmit={handleSendMessage} className="send-message-form">
+        <input
+          type="text"
+          name="message"
+          placeholder="Type your message here"
+        />
+        <button type="submit"><AiOutlineSend/></button>
+      </form>
+    </div>
+  );
+}
+
+export default ChatUI;
