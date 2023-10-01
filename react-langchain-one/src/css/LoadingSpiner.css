@@ -11,14 +11,14 @@
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  border: 2px solid #FFF;
+  background: var(--light-color);
   position: absolute;
   left: 0;
   top: 0;
   animation: animloader 1s linear infinite;
 }
 .loader::after {
-  animation-delay: 1s;
+  animation-delay: 0s;
 }
 
 @keyframes animloader {
@@ -31,3 +31,4 @@
     opacity: 0;
   }
 }
+    

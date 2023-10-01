@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./css/ChatUI.css";
+import { GiComputerFan } from "react-icons/gi";
 import { AiOutlineSend } from "react-icons/ai";
 import { openAiChatModel } from "./openAi/chatModel";
 import format from "string-format";
 import LoadingSpinner from "./components/LoadingSpinner";
+import { marked } from "marked";
 
 function ChatUI({ userName }) {
   const [messages, setMessages] = useState([]);
@@ -12,7 +14,7 @@ function ChatUI({ userName }) {
   const sendMessageContainerRef = useRef();
 
   useEffect(() => {
-    messageContainerRef.current?.scrollIntoView({ behavior: 'smooth' })
+    messageContainerRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
   useEffect(() => {
@@ -51,17 +53,21 @@ function ChatUI({ userName }) {
             {message.type === "user" ? (
               <div className="message-sender">{userName.charAt(0)}</div>
             ) : (
-              <div className="message-sender message-sender-ai">AI</div>
+              <div className="message-sender message-sender-ai">
+                <GiComputerFan />
+              </div>
             )}
-            <div key={index} className="message">
-              {message.text}
-            </div>
+            <div
+              key={index}
+              className="message"
+              dangerouslySetInnerHTML={{ __html: marked(message.text) }}
+            />
           </div>
         ))}
         {isLoading && (
           <div className="message-container">
-            <div className="message-sender message-sender-ai">AI</div>
-            <div className="message">
+            <div className="message-sender message-sender-ai"><GiComputerFan/></div>
+            <div className="message" style={{ backgroundColor: "transparent" }}>
               <LoadingSpinner />
             </div>
           </div>
