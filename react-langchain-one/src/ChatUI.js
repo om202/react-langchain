@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import "./css/ChatUI.css";
 import { GiComputerFan } from "react-icons/gi";
 import { AiOutlineSend } from "react-icons/ai";
+import {FcBiotech} from "react-icons/fc";
 import { openAiChatModel } from "./openAi/chatModel";
 import format from "string-format";
 import LoadingSpinner from "./components/LoadingSpinner";
@@ -51,7 +52,9 @@ function ChatUI({ userName }) {
             ref={messageContainerRef}
           >
             {message.type === "user" ? (
-              <div className="message-sender">{userName.charAt(0)}</div>
+              <div className="message-sender">
+                <FcBiotech />
+              </div>
             ) : (
               <div className="message-sender message-sender-ai">
                 <GiComputerFan />
@@ -66,7 +69,9 @@ function ChatUI({ userName }) {
         ))}
         {isLoading && (
           <div className="message-container">
-            <div className="message-sender message-sender-ai"><GiComputerFan/></div>
+            <div className="message-sender message-sender-ai">
+              <GiComputerFan />
+            </div>
             <div className="message" style={{ backgroundColor: "transparent" }}>
               <LoadingSpinner />
             </div>

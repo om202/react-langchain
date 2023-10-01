@@ -5,6 +5,7 @@ async function openAiChatModel(message) {
   const chat = new ChatOpenAI({
     openAIApiKey: apiKey,
     temperature: 0.9,
+    cache: true,
     maxTokens: 1000,
     maxRetries: 2,
     maxConcurrency: 2,
