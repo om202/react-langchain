@@ -10,7 +10,8 @@
 
 .messages-container {
   display: flex;
-  min-width: 70%;
+  max-width: 70%;
+  width: 70%;
   max-height: 90vh;
   flex-direction: column;
   overflow: scroll;
@@ -19,7 +20,7 @@
 .message-container {
   display: flex;
   flex-direction: row;
-  margin-bottom: 10px;
+  margin-bottom: 16px;
 }
 
 .message-sender {
@@ -32,9 +33,13 @@
   font-weight: bold;
   text-transform: uppercase;
   padding: 5px;
-  width: 40px;
+  min-width: 40px;
   height: 40px;
   margin-right: 5px;
+}
+
+.message-sender-ai {
+  background-color: var(--success-color);
 }
 
 .message {
@@ -46,12 +51,19 @@
 
 .send-message-form {
   display: flex;
-  min-width: 70%;
+  max-width: 70%;
+  width: 70%;
   height: 50px;
   background-color: var(--secondary-color);
   margin-top: 10px;
   border-radius: 5px;
   overflow: hidden;
+}
+
+.send-message-form-loading {
+  padding: 1rem;
+  align-items: center;
+  color: var(--light-color);
 }
 
 .send-message-form input[type="text"] {
@@ -62,6 +74,14 @@
   padding: 1rem;
   font-weight: 500;
   font-size: inherit;
+}
+
+.send-message-form input[type="text"]::placeholder {
+  color: var(--tertiary-color);
+}
+
+.send-message-form:focus-within {
+  border: 1px solid var(--tertiary-color);
 }
 
 .send-message-form button[type="submit"] {

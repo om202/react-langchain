@@ -1,32 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./css/ChatUI.css";
 import { AiOutlineSend } from "react-icons/ai";
-import { OpenAI } from "langchain/llms/openai";
-
-async function chatModel(message) {
-  const apiKey = process.env.REACT_APP_OPENAI_API_KEY;
-  const llm = new OpenAI({
-    openAIApiKey: apiKey,
-    temperature: 0.9,
-    maxTokens: 150,
-    maxRetries: 2,
-    maxConcurrency: 2,
-  });
-  return await llm.predict(message);
-}
+import { openAiChatModel } from "./openAi/chatModel";
+import format from "string-format";
+import LoadingSpinner from "./components/LoadingSpinner";
 
 function ChatUI({ userName }) {
   const [messages, setMessages] = useState([]);
-  
+  const [isLoading, setIsLoading] = useState(false);
+  const messageContainerRef = useRef();
+  const sendMessageContainerRef = useRef();
+
+  useEffect(() => {
+    messageContainerRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }, [messages]);
+
+  useEffect(() => {
+    !isLoading && sendMessageContainerRef.current?.focus();
+  }, [isLoading]);
+
   const handleSendMessage = (event) => {
     event.preventDefault();
     const input = event.target.elements.message;
-    const newMessage = input.value;
-    chatModel(newMessage).then((response) => {
-      console.log(response);
-      setMessages([...messages, response]);
+    const newMessage = {
+      type: "user",
+      text: input.value,
+    };
+    setMessages((prevState) => [...prevState, newMessage]);
+    setIsLoading(true);
+    openAiChatModel(newMessage.text).then((response) => {
+      const aiResponse = {
+        type: "ai",
+        text: format(response),
+      };
+      setMessages((prevState) => [...prevState, aiResponse]);
+      setIsLoading(false);
     });
-    // setMessages([...messages, newMessage]);
     input.value = "";
   };
 
@@ -34,19 +43,38 @@ function ChatUI({ userName }) {
     <div className="chat-container">
       <div className="messages-container">
         {messages.map((message, index) => (
-          <div className="message-container">
-            <div className="message-sender">{userName.charAt(0)}</div>
+          <div
+            key={index}
+            className="message-container"
+            ref={messageContainerRef}
+          >
+            {message.type === "user" ? (
+              <div className="message-sender">{userName.charAt(0)}</div>
+            ) : (
+              <div className="message-sender message-sender-ai">AI</div>
+            )}
             <div key={index} className="message">
-              {message}
+              {message.text}
             </div>
           </div>
         ))}
+        {isLoading && (
+          <div className="message-container">
+            <div className="message-sender message-sender-ai">AI</div>
+            <div className="message">
+              <LoadingSpinner />
+            </div>
+          </div>
+        )}
       </div>
       <form onSubmit={handleSendMessage} className="send-message-form">
         <input
+          ref={sendMessageContainerRef}
+          disabled={isLoading}
+          placeholder={isLoading ? "Thinking..." : "Ask anything!"}
+          autoComplete="off"
           type="text"
           name="message"
-          placeholder="Type your message here"
         />
         <button type="submit">
           <AiOutlineSend />
