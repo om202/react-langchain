@@ -3,8 +3,8 @@ import "./css/ChatUI.css";
 import { GiComputerFan } from "react-icons/gi";
 import { AiOutlineSend } from "react-icons/ai";
 import {FcBiotech} from "react-icons/fc";
-import { openAiChatModel } from "./openAi/chatModel";
 import format from "string-format";
+import { openAiChatModelConversationSummaryMemory } from "./openAi/chatModel";
 import LoadingSpinner from "./components/LoadingSpinner";
 import { marked } from "marked";
 
@@ -31,7 +31,8 @@ function ChatUI({ userName }) {
     };
     setMessages((prevState) => [...prevState, newMessage]);
     setIsLoading(true);
-    openAiChatModel(newMessage.text).then((response) => {
+    openAiChatModelConversationSummaryMemory(newMessage.text).then((data) => {
+      const response = data.text;
       const aiResponse = {
         type: "ai",
         text: format(response),
