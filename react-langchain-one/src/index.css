@@ -23,14 +23,14 @@ input[type="text"] {
 }
 
 :root {
-  --primary-color: #c054be;
-  --secondary-color: #515151;
-  --tertiary-color: #b1b1b1;
-  --success-color: #00875a;
-  --danger-color: #dc3545;
-  --warning-color: #ffc107;
-  --info-color: #17a2b8;
-  --light-color: #e7e7e7;
-  --dark-color: #3b3b3b;
-  --darker-color:  #222222;
+  --primary-color: #FFA500;
+  --secondary-color: #666666;
+  --tertiary-color: #999999;
+  --success-color: #02AB3A;
+  --danger-color: #E62E2E;
+  --warning-color: #ffcc00;
+  --info-color: #3399ff;
+  --light-color: #f2f2f2;
+  --dark-color: #333333;
+  --darker-color: #222222;
 }
