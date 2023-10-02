@@ -1,5 +1,7 @@
 .chat-container {
+  background-image: url('../../public/bg.jpg');
   background-color: var(--secondary-color);
+  background-size: cover;
   flex: 1;
   padding: 2rem;
   padding-top: 0;
@@ -17,12 +19,11 @@
   max-height: 95vh;
   flex-direction: column;
   overflow: scroll;
-  scrollbar-width: thin;
-  scrollbar-base-color: var(--secondary-color);
 }
 
 .message-container {
-  margin-top: 24px;
+  margin-top: 36px;
+  align-items: baseline;
   padding-right: 10px;  
   display: flex;
   flex-direction: row;
@@ -42,11 +43,10 @@
   font-weight: bold;
   text-transform: uppercase;
   padding: 5px;
-  min-width: 45px;
-  height: 45px;
+  min-width: 40px;
+  height: 40px;
   margin-right: 5px;
   border-radius: 50%;
-  border: 2px solid var(--tertiary-color);
 }
 
 .message-sender-ai {
@@ -58,19 +58,20 @@
   background-color: var(--success-color);
   color: var(--light-color);
   border-radius: 5px;
-  padding: 10px 18px;
-  margin-left: 10px;
+  padding: 0px 18px;
+  margin-left: 18px;
+  font-weight: 500;
 }
 
 .message-ai {
-  background-color: var(--dark-color);
+  background-color: var(--darker-color);
 }
 
 .send-message-form {
   display: flex;
   min-height: 50px;
   width: 100%;
-  background-color: var(--dark-color);
+  background-color: var(--darker-color);
   border-radius: 5px;
   overflow: hidden;
 }
@@ -92,11 +93,12 @@
 }
 
 .send-message-form input[type="text"]::placeholder {
-  color: var(--tertiary-color);
+  color: var(--light-color);
+  font-weight: 100;
 }
 
 .send-message-form:focus-within {
-  border: 2px solid var(--tertiary-color);
+  outline: 1px solid var(--light-color);
 }
 
 .send-message-form button[type="submit"] {

@@ -2,9 +2,9 @@ import React, { useState, useEffect, useRef } from "react";
 import "./css/ChatUI.css";
 import { GiComputerFan } from "react-icons/gi";
 import { AiOutlineSend } from "react-icons/ai";
-import { FcBiotech } from "react-icons/fc";
+import { FcBiotech, FcEngineering } from "react-icons/fc";
 import format from "string-format";
-import { openAiChatModelConversationSummaryMemory } from "./openAi/chatModel";
+import { openAiChatModelWindowMemory } from "./openAi/chatModel";
 import LoadingSpinner from "./components/LoadingSpinner";
 import { marked } from "marked";
 
@@ -31,8 +31,8 @@ function ChatUI({ userName }) {
     };
     setMessages((prevState) => [...prevState, newMessage]);
     setIsLoading(true);
-    openAiChatModelConversationSummaryMemory(newMessage.text).then((data) => {
-      const response = data.text;
+    openAiChatModelWindowMemory(newMessage.text).then((data) => {
+      const response = data.response; // sometimes data.text
       const aiResponse = {
         type: "ai",
         text: format(response),
@@ -58,7 +58,7 @@ function ChatUI({ userName }) {
               </div>
             ) : (
               <div className="message-sender message-sender-ai">
-                <GiComputerFan />
+                <FcEngineering />
               </div>
             )}
             <div
