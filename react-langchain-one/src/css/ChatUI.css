@@ -16,7 +16,6 @@
   display: flex;
   width: 100%;
   max-width: 766px;
-  max-height: 95vh;
   flex-direction: column;
   overflow: scroll;
 }
