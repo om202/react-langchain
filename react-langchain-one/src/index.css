@@ -9,8 +9,13 @@ body {
   margin: 0;
   padding: 0;
   background-color: var(--darker-color);
+  color: var(--light-color);
 }
 
+a {
+  text-decoration: none;
+  color: var(--info-color);
+}
 
 html::-webkit-scrollbar {
   width: 3px !important;
@@ -21,6 +26,16 @@ input[type="text"] {
   outline: none;
   background-color: var(--light-color);
   box-shadow: none;
+}
+
+.button-transparent {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  outline: none;
+  color: var(--light-color);
+  cursor: pointer;
+  font-size: inherit;
 }
 
 * {

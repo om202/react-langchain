@@ -1,6 +1,6 @@
 .loader {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   display: inline-block;
   position: relative;
 }
@@ -8,10 +8,10 @@
 .loader::before {
   content: '';  
   box-sizing: border-box;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  background: var(--light-color);
+  background: white;
   position: absolute;
   left: 0;
   top: 0;

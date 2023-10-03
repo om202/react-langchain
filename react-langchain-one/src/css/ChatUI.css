@@ -1,7 +1,7 @@
 .chat-container {
-  background-image: url('../../public/bg.jpg');
+  background-image: url('../../public/bg2.jpg');
   background-color: var(--secondary-color);
-  background-size: cover;
+  background-size:cover;
   flex: 1;
   padding: 2rem;
   padding-top: 0;
@@ -23,7 +23,7 @@
 
 .message-container {
   margin-top: 36px;
-  align-items: baseline;
+  align-items: flex-start;
   padding-right: 10px;  
   display: flex;
   flex-direction: row;
@@ -112,4 +112,22 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.message-options {
+  background-color: rgba(255, 255, 255, 0.4);
+  padding: 0.3rem;
+  padding-bottom: 0;
+  display: flex;
+  justify-self: center;
+  align-items: center;
+  margin-left: 16px;
+  border-radius: 5px;
+  width: auto;
+}
+
+.copy-button {
+  color: var(--dark-color);
+  align-self: baseline;
+  font-size: inherit;
 }

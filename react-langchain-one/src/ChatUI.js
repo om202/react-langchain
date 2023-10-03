@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./css/ChatUI.css";
 import { GiComputerFan } from "react-icons/gi";
-import { AiOutlineSend } from "react-icons/ai";
+import { AiOutlineSend, AiOutlineCopy } from "react-icons/ai";
 import { FcBiotech, FcEngineering } from "react-icons/fc";
 import format from "string-format";
 import { openAiChatModelWindowMemory } from "./openAi/chatModel";
 import LoadingSpinner from "./components/LoadingSpinner";
 import { marked } from "marked";
+import { toast } from "react-hot-toast";
 
 function ChatUI({ userName }) {
   const [messages, setMessages] = useState([]);
@@ -21,6 +22,11 @@ function ChatUI({ userName }) {
   useEffect(() => {
     !isLoading && sendMessageContainerRef.current?.focus();
   }, [isLoading]);
+
+  const copyText = (text) => {
+    navigator.clipboard.writeText(text);
+    toast.success("Copied to clipboard!");
+  };
 
   const handleSendMessage = (event) => {
     event.preventDefault();
@@ -68,6 +74,16 @@ function ChatUI({ userName }) {
               }
               dangerouslySetInnerHTML={{ __html: marked(message.text) }}
             />
+            {message.type === "ai" && (
+              <div className="message-options">
+                <button
+                  className="copy-button button-transparent"
+                  onClick={() => copyText(message.text)}
+                >
+                  <AiOutlineCopy strokeWidth={10}/>
+                </button>
+              </div>
+            )}
           </div>
         ))}
         {isLoading && (

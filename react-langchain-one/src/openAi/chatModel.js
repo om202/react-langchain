@@ -23,7 +23,7 @@ const chat = new ChatOpenAI({
 });
 
 // window memory
-const windowMemory = new BufferWindowMemory({ k: 2 });
+const windowMemory = new BufferWindowMemory({ k: 5 });
 const windowMemoryChain = new ConversationChain({
   llm: model,
   memory: windowMemory,
