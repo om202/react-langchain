@@ -42,6 +42,7 @@
 }
 
 .message {
+  flex-direction: column;
   background-color: var(--darker-color);
   color: var(--light-color);
   border-radius: 5px;

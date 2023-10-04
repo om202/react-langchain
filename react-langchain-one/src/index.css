@@ -68,3 +68,10 @@ input[type="text"] {
   --success-color: rgb(23, 130, 93);
   --info-color: rgb(0,122,204);
 }
+
+@media screen and (max-width: 460px) {
+  * {
+    line-height: 1.25;
+  }
+}
+  
