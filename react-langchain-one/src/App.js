@@ -1,10 +1,13 @@
-import ChatUI from "./ChatUI";
-import "./css/App.css";
-import { Toaster } from "react-hot-toast";
-import { firebaseConfig, initializeApp, getAnalytics } from "./firebase";
+import React from "react";
 import { useEffect } from "react";
-import { Header } from "./Header";
 
+import { Toaster } from "react-hot-toast";
+
+import ChatUI from "./components/ChatUI";
+import { Header } from "./components/Header";
+import { firebaseConfig, getAnalytics, initializeApp } from "./firebase";
+
+import "./css/App.css";
 function App() {
   useEffect(() => {
     const firebaseApp = initializeApp(firebaseConfig);

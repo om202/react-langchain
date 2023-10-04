@@ -1,12 +1,21 @@
-import React, { useState, useEffect, useRef } from "react";
-import "./css/ChatUI.css";
-import { GiComputerFan } from "react-icons/gi";
-import { AiOutlineSend, AiOutlineCopy } from "react-icons/ai";
-import format from "string-format";
-import { openAiChatModelWindowMemory } from "./openAi/chatModel";
-import LoadingSpinner from "./components/LoadingSpinner";
+import React, { useEffect, useRef, useState } from "react";
+
 import { marked } from "marked";
+import PropTypes from "prop-types";
+import format from "string-format";
 import { toast } from "react-hot-toast";
+
+import { GiComputerFan } from "react-icons/gi";
+import { AiOutlineCopy, AiOutlineSend } from "react-icons/ai";
+
+import LoadingSpinner from "./LoadingSpinner";
+import { openAiChatModelWindowMemory } from "../openAi/memoryModels";
+
+import "../css/ChatUI.css";
+
+ChatUI.propTypes = {
+  userName: PropTypes.string.isRequired,
+};
 
 function ChatUI({ userName }) {
   const [messages, setMessages] = useState([]);

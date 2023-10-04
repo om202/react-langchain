@@ -1,7 +1,8 @@
 import '../css/LoadingSpiner.css';
+import React from 'react';
 
 export default function LoadingSpinner() {
   return (
-    <span class="loader"></span>
+    <span className="loader"></span>
   );
 }

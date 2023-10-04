@@ -1,5 +1,6 @@
 import { BsFillFileEarmarkMedicalFill } from "react-icons/bs";
-import "./css/Header.css";
+import "../css/Header.css";
+import React from "react";
 
 export function Header() {
   return (
