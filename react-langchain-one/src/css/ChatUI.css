@@ -124,9 +124,14 @@
   font-size: large;
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 460px) {
   .message {
-    margin-left: 0.8rem;
+    margin-left: 0.6rem;
+  }
+
+  .message-sender {
+    min-width: 32px;
+    height: 32px;
   }
 
   .message-options {
