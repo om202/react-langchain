@@ -3,7 +3,7 @@ import { useEffect } from "react";
 
 import { Toaster } from "react-hot-toast";
 
-import ChatUI from "./components/ChatUI";
+import ChatUI from "./components/ChatUI/ChatUI";
 import { Header } from "./components/Header";
 import { firebaseConfig, getAnalytics, initializeApp } from "./firebase";
 

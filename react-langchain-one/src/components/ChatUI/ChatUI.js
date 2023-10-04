@@ -2,16 +2,16 @@ import React, { useEffect, useRef, useState } from "react";
 
 import { marked } from "marked";
 import PropTypes from "prop-types";
-import format from "string-format";
 import { toast } from "react-hot-toast";
 
 import { GiComputerFan } from "react-icons/gi";
 import { AiOutlineCopy, AiOutlineSend } from "react-icons/ai";
 
-import LoadingSpinner from "./LoadingSpinner";
-import { openAiChatModelWindowMemory } from "../openAi/memoryModels";
+import LoadingSpinner from "../LoadingSpinner";
+import { openAiChatModelWindowMemory } from "../../openAi/memoryModels";
+import { WebBrowserModel } from "../../openAi/WebBrowser";
 
-import "../css/ChatUI.css";
+import "../../css/ChatUI.css";
 
 ChatUI.propTypes = {
   userName: PropTypes.string.isRequired,
@@ -46,11 +46,11 @@ function ChatUI({ userName }) {
     };
     setMessages((prevState) => [...prevState, newMessage]);
     setIsLoading(true);
-    openAiChatModelWindowMemory(newMessage.text).then((data) => {
-      const response = data.response; // sometimes data.text
+    WebBrowserModel(newMessage.text).then((data) => {
+      const response = data; // sometimes data.text
       const aiResponse = {
         type: "ai",
-        text: format(response),
+        text: response,
       };
       setMessages((prevState) => [...prevState, aiResponse]);
       setIsLoading(false);
