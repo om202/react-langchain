@@ -26,8 +26,8 @@
 
 .message-sender {
   background-color: var(--quaternary-color);
-  min-width: 40px;
-  height: 40px;
+  min-width: 36px;
+  height: 36px;
   justify-content: center;
   align-items: center;
   font-weight: 300;
@@ -123,3 +123,19 @@
   color: var(--quaternary-color);
   font-size: large;
 }
+
+@media screen and (max-width: 400px) {
+  .message {
+    margin-left: 0.8rem;
+  }
+
+  .message-options {
+    margin-left: 8px;
+  }
+
+  .chat-container {
+    padding: 1rem;
+    padding-top: 64px;
+  }
+}
+
