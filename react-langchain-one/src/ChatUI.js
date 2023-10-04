@@ -30,6 +30,7 @@ function ChatUI({ userName }) {
   const handleSendMessage = (event) => {
     event.preventDefault();
     const input = event.target.elements.message;
+    if (!input.value) return;
     const newMessage = {
       type: "user",
       text: input.value,
