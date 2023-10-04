@@ -1,7 +1,9 @@
 .app-container {
   flex: 1;
   height: 100svh;
-  display: flex;
   flex-direction: column;
   overflow: auto;
+  background-image: url('../../public/bg2.jpg');
+  background-color: var(--secondary-color);
+  background-size:cover;
 }

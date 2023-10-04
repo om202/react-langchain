@@ -1,11 +1,5 @@
 .chat-container {
-  background-image: url('../../public/bg2.jpg');
-  background-color: var(--secondary-color);
-  background-size:cover;
-  flex: 1;
-  padding: 2rem;
-  padding-top: 0;
-  display: flex;
+  padding: 1.5rem;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
@@ -13,8 +7,8 @@
 }
 
 .messages-container {
-  display: flex;
   width: 100%;
+  margin-bottom: 88px;
   max-width: 766px;
   flex-direction: column;
   overflow: scroll;
@@ -23,7 +17,6 @@
 .message-container {
   margin-top: 36px;
   align-items: flex-start;
-  display: flex;
   flex-direction: row;
 }
 
@@ -33,7 +26,6 @@
 
 .message-sender {
   background-color: var(--darker-color);
-  display: flex;
   justify-content: center;
   align-items: center;
   color: var(--light-color);
@@ -43,13 +35,8 @@
   padding: 5px;
   min-width: 40px;
   height: 40px;
-  margin-right: 5px;
+  margin: 10px;
   border-radius: 50%;
-}
-
-.message-sender-ai {
-  
-  /* background-color: var(--dark-color); */
 }
 
 .message {
@@ -65,8 +52,22 @@
   background-color: var(--darker-color);
 }
 
+.chat-ui-footer {
+  position: absolute;
+  bottom: 0;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0),
+    rgba(71, 70, 69, 1) 58.85%
+  );
+  padding: 1rem;
+  width: 100%;
+  height: fit-content;
+}
+
 .send-message-form {
-  display: flex;
   height: 56px;
   width: 100%;
   max-width: 766px;
@@ -108,7 +109,6 @@
   margin-left: 10px;
   color: var(--tertiary-color);
   cursor: pointer;
-  display: flex;
   justify-content: center;
   align-items: center;
 }
@@ -117,7 +117,6 @@
   background-color: rgba(255, 255, 255, 0.4);
   padding: 0.3rem;
   padding-bottom: 0;
-  display: flex;
   justify-self: center;
   align-items: center;
   margin-left: 16px;
@@ -129,15 +128,4 @@
   color: var(--dark-color);
   align-self: baseline;
   font-size: inherit;
-}
-
-@media screen and (max-width: 750px) {
-
-}
-
-@media screen and (max-width: 500px) {
-  .chat-container {
-    padding: 1rem;
-    padding-top: 64px;
-  }
 }

@@ -80,7 +80,7 @@ function ChatUI({ userName }) {
                   className="copy-button button-transparent"
                   onClick={() => copyText(message.text)}
                 >
-                  <AiOutlineCopy strokeWidth={10}/>
+                  <AiOutlineCopy strokeWidth={10} />
                 </button>
               </div>
             )}
@@ -97,19 +97,21 @@ function ChatUI({ userName }) {
           </div>
         )}
       </div>
-      <form onSubmit={handleSendMessage} className="send-message-form">
-        <input
-          ref={sendMessageContainerRef}
-          disabled={isLoading}
-          placeholder={isLoading ? "Thinking..." : "Ask anything!"}
-          autoComplete="off"
-          type="text"
-          name="message"
-        />
-        <button type="submit">
-          <AiOutlineSend />
-        </button>
-      </form>
+      <div className="chat-ui-footer">
+        <form onSubmit={handleSendMessage} className="send-message-form">
+          <input
+            ref={sendMessageContainerRef}
+            disabled={isLoading}
+            placeholder={isLoading ? "Thinking..." : "Ask anything!"}
+            autoComplete="off"
+            type="text"
+            name="message"
+          />
+          <button type="submit">
+            <AiOutlineSend />
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
