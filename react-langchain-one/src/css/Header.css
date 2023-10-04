@@ -8,7 +8,7 @@
   height: 64px;
   color: var(--light-color);
   background-color: var(--darker-color);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.26), 0 3px 6px rgba(0, 0, 0, 0.33);
 }
 
 .header__left {
