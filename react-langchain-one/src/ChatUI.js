@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import "./css/ChatUI.css";
 import { GiComputerFan } from "react-icons/gi";
 import { AiOutlineSend, AiOutlineCopy } from "react-icons/ai";
-import { FcBiotech, FcEngineering } from "react-icons/fc";
 import format from "string-format";
 import { openAiChatModelWindowMemory } from "./openAi/chatModel";
 import LoadingSpinner from "./components/LoadingSpinner";
@@ -60,11 +59,11 @@ function ChatUI({ userName }) {
           >
             {message.type === "user" ? (
               <div className="message-sender">
-                <FcBiotech />
+                <span>{userName[0]}</span>
               </div>
             ) : (
               <div className="message-sender message-sender-ai">
-                <FcEngineering />
+                <span>AI</span>
               </div>
             )}
             <div

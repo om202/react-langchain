@@ -21,6 +21,10 @@
   align-items: center;
 }
 
+.header__logo .title {
+  margin-left: 0.5rem;
+}
+
 .header__right {
   justify-content: flex-end;
   align-items: flex-end;

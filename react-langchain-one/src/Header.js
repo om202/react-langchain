@@ -6,8 +6,8 @@ export function Header() {
     <div className="header">
       <div className="header__left">
         <div className="header__logo">
-          <BsFillFileEarmarkMedicalFill style={{ marginRight: "5px" }} /> PDF
-          Expert
+          <BsFillFileEarmarkMedicalFill style={{ marginRight: "5px" }} />
+          <span className="title">PDF Expert</span>
         </div>
       </div>
       <div className="header__right">

@@ -59,14 +59,12 @@ input[type="text"] {
 }
 
 :root {
-  --primary-color: #ffa500;
-  --secondary-color: #666666;
-  --tertiary-color: #999999;
-  --success-color: #02ab3a;
-  --danger-color: #e62e2e;
-  --warning-color: #ffcc00;
-  --info-color: #3399ff;
-  --light-color: #f2f2f2;
-  --dark-color: #333333;
-  --darker-color: #222222;
+  --darker-color: #1e1e1e;
+  --dark-color: #252525;
+  --secondary-color: #595959;
+  --tertiary-color: #787878;
+  --quaternary-color: #bebebe;
+  --light-color: #cccccc;
+  --success-color: rgb(23, 130, 93);
+  --info-color: rgb(0,122,204);
 }

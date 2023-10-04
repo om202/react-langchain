@@ -3,7 +3,11 @@
   height: 100svh;
   flex-direction: column;
   overflow: auto;
-  background-image: url('../../public/bg2.jpg');
   background-color: var(--secondary-color);
-  background-size:cover;
+  background: linear-gradient(
+      to bottom,
+      var(--secondary-color),
+      var(--dark-color)
+    );
+  background-size: cover;
 }
