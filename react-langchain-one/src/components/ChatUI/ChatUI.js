@@ -41,12 +41,15 @@ function ChatUI({ userName }) {
     event.preventDefault();
     if (event.target.files) {
       const selectedFile = event.target.files[0];
-      openAiDocumentModel(selectedFile);
-      const newMessage = {
-        type: "user",
-        text: `Uploaded file: ${selectedFile.name}`,
-      };
-      setMessages((prevState) => [...prevState, newMessage]);
+      const question = "What is the title of this document?";
+      const answer = openAiDocumentModel(selectedFile, question);
+      answer.then(ans => {
+        const newMessage = {
+          type: "user",
+          text: `Uploaded file: ${selectedFile.name} \n Dummy: Question ${question} : Answer ${ans}`,
+        };
+        setMessages((prevState) => [...prevState, newMessage]);
+      });
     }
   };
 

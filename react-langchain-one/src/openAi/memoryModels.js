@@ -2,15 +2,8 @@ import { PromptTemplate } from "langchain/prompts";
 import { ConversationChain, LLMChain } from "langchain/chains";
 import { BufferMemory, BufferWindowMemory, ConversationSummaryMemory } from "langchain/memory";
 
-import { gptModel35, defaultModel as model } from "./model";
-
-const promptText = `The following is a friendly conversation between a human and an AI. 
-The AI is talkative and provides lots of specific details from its context. 
-If the AI does not know the answer to a question, it truthfully says it does not know.
-Current conversation:
-{chat_history}
-Human: {input}
-AI:`;
+import { gptModel35, defaultModel as model } from "./openAiModels";
+import { GENERAL_CONVERSATION_TEMPLATE } from "../templates";
 
 // window memory
 const windowMemory = new BufferWindowMemory({ k: 5 });
@@ -28,7 +21,7 @@ const memory = new ConversationSummaryMemory({
   memoryKey: "chat_history",
   llm: gptModel35,
 });
-const prompt = PromptTemplate.fromTemplate(promptText);
+const prompt = PromptTemplate.fromTemplate(GENERAL_CONVERSATION_TEMPLATE);
 const memoryChain = new LLMChain({ llm: model, prompt, memory: memory });
 
 async function openAiChatModelWindowMemory(message) {

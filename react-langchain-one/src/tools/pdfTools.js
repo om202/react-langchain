@@ -8,9 +8,13 @@ const pdfToText = (pdfFile) => {
       const pdfData = new Uint8Array(fileReader.result);
       pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
       const pdf = await pdfjs.getDocument({ data: pdfData }).promise;
-      const pdfPage = await pdf.getPage(1);
-      const pdfText = await pdfPage.getTextContent();
-      const text = pdfText.items.map((item) => item.str).join(' ');
+      const numPages = pdf.numPages;
+      let text = "";
+      for (let i = 1; i <= numPages; i++) {
+        const pdfPage = await pdf.getPage(i);
+        const pdfText = await pdfPage.getTextContent();
+        text += pdfText.items.map((item) => item.str).join(" ");
+      }
       resolve(text);
     };
     fileReader.onerror = (error) => {
@@ -18,6 +22,5 @@ const pdfToText = (pdfFile) => {
     };
   });
 };
-
 
 export { pdfToText };

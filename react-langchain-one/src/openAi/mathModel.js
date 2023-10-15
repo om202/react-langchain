@@ -1,6 +1,6 @@
 import { initializeAgentExecutorWithOptions } from "langchain/agents";
 import { Calculator } from "langchain/tools/calculator";
-import { chatModel } from "./model";
+import { chatModel } from "./openAiModels";
 
 const tools = [
   new Calculator(),
