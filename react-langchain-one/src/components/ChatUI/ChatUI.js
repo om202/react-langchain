@@ -25,6 +25,16 @@ function ChatUI({ userName }) {
   const [uploadedPdf, setUploadedPdf] = useState(null);
 
   useEffect(() => {
+    if(uploadedPdf) {
+      const newMessage = {
+        type: "user",
+        text: `Uploaded file: ${uploadedPdf.name}`,
+      };
+      setMessages((prevState) => [...prevState, newMessage]);
+    }
+  },[uploadedPdf]);
+
+  useEffect(() => {
     messageContainerRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
@@ -42,11 +52,6 @@ function ChatUI({ userName }) {
     if (event.target.files) {
       const selectedFile = event.target.files[0];
       setUploadedPdf(selectedFile);
-      const newMessage = {
-        type: "user",
-        text: `Uploaded file: ${selectedFile.name}`,
-      };
-      setMessages((prevState) => [...prevState, newMessage]);
     }
   };
 
