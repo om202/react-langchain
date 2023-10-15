@@ -60,14 +60,19 @@ input[type="text"] {
 }
 
 :root {
-  --darker-color: #1e1e1e;
-  --dark-color: #252525;
-  --secondary-color: #595959;
-  --tertiary-color: #787878;
-  --quaternary-color: #bebebe;
-  --light-color: #cccccc;
-  --success-color: rgb(23, 130, 93);
-  --info-color: rgb(0,122,204);
+  --darker-color: #1a1f2d;
+  --dark-color: #23283a;
+  --secondary-color: #2a2f3d;
+  --tertiary-color: #676c7d;
+  --quaternary-color: #8b909d;
+  --light-color: #fff;
+
+  /* Colorful */
+  --success-color: #1A5448;
+  --orange-color: #E5A68D;
+  --info-color: #007BFF;
+  --info-light-color: #4682B4;
+  --gold-color: #FFD700;
 }
 
 @media screen and (max-width: 460px) {

@@ -4,10 +4,5 @@
   flex-direction: column;
   overflow: auto;
   background-color: var(--secondary-color);
-  background: linear-gradient(
-      to bottom,
-      var(--secondary-color),
-      var(--dark-color)
-    );
   background-size: cover;
 }
