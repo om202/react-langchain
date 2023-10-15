@@ -13,7 +13,7 @@
     0.6
   );
   backdrop-filter: blur(10px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid var(--tertiary-color);
 }
 
 .header__left {
@@ -21,7 +21,7 @@
 }
 
 .header__logo {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-weight: light;
   align-items: center;
 }

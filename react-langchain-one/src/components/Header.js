@@ -12,10 +12,7 @@ export function Header() {
         </div>
       </div>
       <div className="header__right">
-        <span>
-          WIP by {""}
-          <a href="https://www.linkedin.com/in/omprakashsahkanu/">Omprakash</a>
-        </span>
+        <span></span>
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import { OpenAI } from "langchain/llms/openai";
 import { ChatOpenAI } from "langchain/chat_models/openai";
+import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 
 const apiKey = process.env.REACT_APP_OPENAI_API_KEY;
 
@@ -22,9 +23,6 @@ const chatModel = new ChatOpenAI({
   maxConcurrency: 2,
 });
 
+const openAIEmbeddings = new OpenAIEmbeddings({ openAIApiKey: apiKey });
 
-export {
-  defaultModel,
-  gptModel35,
-  chatModel,
-};
+export { defaultModel, gptModel35, chatModel, openAIEmbeddings };

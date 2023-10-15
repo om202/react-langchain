@@ -11,6 +11,7 @@ import LoadingSpinner from "../LoadingSpinner";
 import { openAiChatModelWindowMemory } from "../../openAi/memoryModels";
 
 import "../../css/ChatUI.css";
+import { openAiDocumentModel } from "../../openAi/documentModel";
 
 ChatUI.propTypes = {
   userName: PropTypes.string.isRequired,
@@ -22,17 +23,6 @@ function ChatUI({ userName }) {
   const messageContainerRef = useRef();
   const sendMessageContainerRef = useRef();
   const fileInputRef = useRef();
-  const [uploadedPdf, setUploadedPdf] = useState(null);
-
-  useEffect(() => {
-    if(uploadedPdf) {
-      const newMessage = {
-        type: "user",
-        text: `Uploaded file: ${uploadedPdf.name}`,
-      };
-      setMessages((prevState) => [...prevState, newMessage]);
-    }
-  },[uploadedPdf]);
 
   useEffect(() => {
     messageContainerRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -51,7 +41,12 @@ function ChatUI({ userName }) {
     event.preventDefault();
     if (event.target.files) {
       const selectedFile = event.target.files[0];
-      setUploadedPdf(selectedFile);
+      openAiDocumentModel(selectedFile);
+      const newMessage = {
+        type: "user",
+        text: `Uploaded file: ${selectedFile.name}`,
+      };
+      setMessages((prevState) => [...prevState, newMessage]);
     }
   };
 
@@ -97,7 +92,7 @@ function ChatUI({ userName }) {
               </div>
             ) : (
               <div className="message-sender message-sender-ai">
-                <span>AI</span>
+                <GiComputerFan />
               </div>
             )}
             <div

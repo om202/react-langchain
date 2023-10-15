@@ -25,15 +25,17 @@
 }
 
 .message-sender {
+  padding: 2px;
+  font-size: large;
   background-color: var(--orange-color);
   min-width: 36px;
   height: 36px;
+  line-height: 0;
   justify-content: center;
   align-items: center;
   font-weight: 300;
   color: white;
   text-transform: uppercase;
-  padding: 5px;
   border-radius: 2px;
 }
 
@@ -63,7 +65,7 @@
   background-image: linear-gradient(
     180deg,
     rgba(0, 0, 0, 0),
-    rgb(42, 47, 61) 58.85%
+    rgb(58,63,77) 58.85%
   );
   padding: 1rem;
   width: 100%;
