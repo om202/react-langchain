@@ -5,11 +5,10 @@ import PropTypes from "prop-types";
 import { toast } from "react-hot-toast";
 
 import { GiComputerFan } from "react-icons/gi";
-import { AiOutlineCopy, AiOutlineSend } from "react-icons/ai";
+import { AiOutlineCopy, AiOutlineSend, AiOutlineFileAdd } from "react-icons/ai";
 
 import LoadingSpinner from "../LoadingSpinner";
 import { openAiChatModelWindowMemory } from "../../openAi/memoryModels";
-import { WebBrowserModel } from "../../openAi/WebBrowser";
 
 import "../../css/ChatUI.css";
 
@@ -22,6 +21,8 @@ function ChatUI({ userName }) {
   const [isLoading, setIsLoading] = useState(false);
   const messageContainerRef = useRef();
   const sendMessageContainerRef = useRef();
+  const fileInputRef = useRef();
+  const [uploadedPdf, setUploadedPdf] = useState(null);
 
   useEffect(() => {
     messageContainerRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -30,6 +31,24 @@ function ChatUI({ userName }) {
   useEffect(() => {
     !isLoading && sendMessageContainerRef.current?.focus();
   }, [isLoading]);
+
+  const triggerFileUpload = (e) => {
+    e.preventDefault();
+    fileInputRef.current.click();
+  };
+
+  const handleFileUpload = (event) => {
+    event.preventDefault();
+    if (event.target.files) {
+      const selectedFile = event.target.files[0];
+      setUploadedPdf(selectedFile);
+      const newMessage = {
+        type: "user",
+        text: `Uploaded file: ${selectedFile.name}`,
+      };
+      setMessages((prevState) => [...prevState, newMessage]);
+    }
+  };
 
   const copyText = (text) => {
     navigator.clipboard.writeText(text);
@@ -46,8 +65,8 @@ function ChatUI({ userName }) {
     };
     setMessages((prevState) => [...prevState, newMessage]);
     setIsLoading(true);
-    WebBrowserModel(newMessage.text).then((data) => {
-      const response = data; // sometimes data.text
+    openAiChatModelWindowMemory(newMessage.text).then((data) => {
+      const response = data.response; // sometimes data.text
       const aiResponse = {
         type: "ai",
         text: response,
@@ -107,19 +126,36 @@ function ChatUI({ userName }) {
         )}
       </div>
       <div className="chat-ui-footer">
-        <form onSubmit={handleSendMessage} className="send-message-form">
-          <input
-            ref={sendMessageContainerRef}
-            disabled={isLoading}
-            placeholder={isLoading ? "Thinking..." : "Ask anything!"}
-            autoComplete="off"
-            type="text"
-            name="message"
-          />
-          <button type="submit">
-            <AiOutlineSend />
-          </button>
-        </form>
+        <div className="forms-container">
+          <form className="upload-form">
+            <button
+              className="button-upload"
+              onClick={(e) => triggerFileUpload(e)}
+            >
+              <AiOutlineFileAdd />
+            </button>
+            <input
+              onChange={(e) => handleFileUpload(e)}
+              type="file"
+              accept=".pdf"
+              style={{ display: "none" }}
+              ref={fileInputRef}
+            />
+          </form>
+          <form onSubmit={handleSendMessage} className="send-message-form">
+            <input
+              ref={sendMessageContainerRef}
+              disabled={isLoading}
+              placeholder={isLoading ? "Thinking..." : "Ask anything!"}
+              autoComplete="off"
+              type="text"
+              name="message"
+            />
+            <button type="submit">
+              <AiOutlineSend />
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );

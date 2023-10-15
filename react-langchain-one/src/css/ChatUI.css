@@ -70,7 +70,7 @@
   height: fit-content;
 }
 
-.send-message-form {
+.forms-container {
   height: 56px;
   width: 100%;
   max-width: 766px;
@@ -78,6 +78,14 @@
   border-radius: 5px;
   overflow: hidden;
   outline: 1px solid var(--tertiary-color);
+}
+
+.upload-form {
+  border-right: 1px dotted var(--tertiary-color);
+}
+
+.send-message-form {
+  width: 100%;
 }
 
 .send-message-form-loading {
@@ -99,14 +107,15 @@
   color: var(--quaternary-color);
 }
 
-.send-message-form:focus-within {
+.forms-container:focus-within {
   outline: 1px solid var(--light-color);
 }
 
-.send-message-form button[type="submit"] {
+.send-message-form button[type="submit"],
+.button-upload {
   background-color: transparent;
   border: none;
-  font-size: x-large; 
+  font-size: x-large;
   display: flex;
   padding-right: 16px;
   color: var(--quaternary-color);
@@ -114,6 +123,10 @@
   justify-content: center;
   height: 100%;
   align-items: center;
+}
+
+.button-upload {
+  padding-left: 16px;
 }
 
 .message-options {
@@ -124,6 +137,10 @@
   color: var(--quaternary-color);
   font-size: large;
 }
+
+/**
+* Media queries 
+*/
 
 @media screen and (max-width: 460px) {
   .message {
@@ -144,4 +161,3 @@
     padding-top: 64px;
   }
 }
-
