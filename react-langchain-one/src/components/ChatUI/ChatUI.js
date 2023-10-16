@@ -30,9 +30,10 @@ function ChatUI({ userName }) {
     messageContainerRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
+  /* Facing bug with android keyboard
   useEffect(() => {
-    !isLoading && sendMessageContainerRef.current?.focus();
-  }, [isLoading]);
+    sendMessageContainerRef.current?.focus();
+  }, [isLoading]); */
 
   const triggerFileUpload = (e) => {
     e.preventDefault();
