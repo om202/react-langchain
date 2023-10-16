@@ -48,11 +48,15 @@ const processWithOpenAi = async (text) => {
   return chain;
 };
 
-const openAiDocumentModel = async (pdfFile, question) => {
+const openAiProcessPdf = async (pdfFile) => {
   const text = await pdfToText(pdfFile);
   const chain = await processWithOpenAi(text);
+  return chain;
+};
+
+const openAiDocumentModel = async (chain, question) => {
   const answer = await chain.invoke(question);
   return answer;
 };
 
-export { openAiDocumentModel };
+export { openAiProcessPdf, openAiDocumentModel };

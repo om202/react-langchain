@@ -6,7 +6,10 @@ import LoadingSpinner from "../LoadingSpinner";
 import { openAiChatModelWindowMemory } from "../../openAi/memoryModels";
 
 import "../../css/ChatUI.css";
-import { openAiDocumentModel } from "../../openAi/documentModel";
+import {
+  openAiDocumentModel,
+  openAiProcessPdf,
+} from "../../openAi/documentModel";
 import ChatUserIcon from "./ChatUserIcon";
 import ChatMessage from "./ChatMessage";
 import ChatOptions from "./ChatOptions";
@@ -14,6 +17,10 @@ import ChatOptions from "./ChatOptions";
 function ChatUI({ userName }) {
   const [messages, setMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [documentProcessing, setDocumentProcessing] = useState(false);
+  const [documentChain, setDocumentChain] = useState(null);
+
+  /** Refs */
   const messageContainerRef = useRef();
   const sendMessageContainerRef = useRef();
   const fileInputRef = useRef();
@@ -32,15 +39,24 @@ function ChatUI({ userName }) {
   };
 
   const handleFileUpload = (event) => {
+    setDocumentProcessing(true);
     event.preventDefault();
+
     if (event.target.files) {
       const selectedFile = event.target.files[0];
-      const question = "What is the title of this document?";
-      const answer = openAiDocumentModel(selectedFile, question);
-      answer.then((ans) => {
+
+      const newMessage = {
+        type: "ai",
+        text: `Uploaded file: ${selectedFile.name}. Document Processing...`,
+      };
+      setMessages((prevState) => [...prevState, newMessage]);
+
+      openAiProcessPdf(selectedFile).then((chain) => {
+        setDocumentProcessing(false);
+        setDocumentChain(chain);
         const newMessage = {
-          type: "user",
-          text: `Uploaded file: ${selectedFile.name} \n Dummy: Question ${question} : Answer ${ans}`,
+          type: "ai",
+          text: `Document Processing Complete!`,
         };
         setMessages((prevState) => [...prevState, newMessage]);
       });
@@ -57,15 +73,25 @@ function ChatUI({ userName }) {
     };
     setMessages((prevState) => [...prevState, newMessage]);
     setIsLoading(true);
-    openAiChatModelWindowMemory(newMessage.text).then((data) => {
-      const response = data.response; // sometimes data.text
-      const aiResponse = {
-        type: "ai",
-        text: response,
-      };
-      setMessages((prevState) => [...prevState, aiResponse]);
-      setIsLoading(false);
-    });
+    !documentChain
+      ? openAiChatModelWindowMemory(newMessage.text).then((data) => {
+          const response = data.response; // sometimes data.text
+          const aiResponse = {
+            type: "ai",
+            text: response,
+          };
+          setMessages((prevState) => [...prevState, aiResponse]);
+          setIsLoading(false);
+        })
+      : openAiDocumentModel(documentChain, newMessage.text).then((data) => {
+          const response = data;
+          const aiResponse = {
+            type: "ai",
+            text: response,
+          };
+          setMessages((prevState) => [...prevState, aiResponse]);
+          setIsLoading(false);
+        });
     input.value = "";
   };
 
