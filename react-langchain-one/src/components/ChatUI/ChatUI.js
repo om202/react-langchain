@@ -107,13 +107,15 @@ function ChatUI({ userName }) {
             ref={messageContainerRef}
             style={
               message.type === "ai"
-                ? { backgroundColor: "rgba(0,0,0,0.1)" }
+                ? { backgroundColor: "rgba(0,0,0,0.15)" }
                 : null
             }
           >
             <div className="message-holder">
               <div className="message-content">
-                {message.type==='user' && <ChatUserIcon type={message.type} />}
+                {message.type === "user" && (
+                  <ChatUserIcon type={message.type} />
+                )}
                 <ChatMessage message={message} index={index} />
               </div>
               {message.type === "ai" && <ChatOptions text={message.text} />}
@@ -121,10 +123,13 @@ function ChatUI({ userName }) {
           </div>
         ))}
         {isLoading && (
-          <div className="message-container">
+          <div
+            className="message-container"
+            style={{ backgroundColor: "rgba(0,0,0,0.15)" }}
+          >
             <div className="message-holder">
               <div className="message-content">
-                <LoadingSpinner/>
+                <LoadingSpinner />
               </div>
             </div>
           </div>
