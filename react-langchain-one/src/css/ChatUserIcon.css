@@ -1,9 +1,10 @@
 .message-sender {
+  margin-right: 1.5rem;
   padding: 2px;
   font-size: large;
-  background-color: var(--info-color);
-  min-width: 36px;
-  height: 36px;
+  background-color: var(--success-color);
+  min-width: 32px;
+  height: 32px;
   line-height: 0;
   justify-content: center;
   align-items: center;

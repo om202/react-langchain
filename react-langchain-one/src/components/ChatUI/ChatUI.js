@@ -113,7 +113,7 @@ function ChatUI({ userName }) {
           >
             <div className="message-holder">
               <div className="message-content">
-                <ChatUserIcon type={message.type} />
+                {message.type==='user' && <ChatUserIcon type={message.type} />}
                 <ChatMessage message={message} index={index} />
               </div>
               {message.type === "ai" && <ChatOptions text={message.text} />}
@@ -124,7 +124,6 @@ function ChatUI({ userName }) {
           <div className="message-container">
             <div className="message-holder">
               <div className="message-content">
-                <ChatUserIcon type="ai" />
                 <LoadingSpinner/>
               </div>
             </div>

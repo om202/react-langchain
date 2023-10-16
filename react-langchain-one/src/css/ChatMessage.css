@@ -1,6 +1,5 @@
 .message {
   flex-direction: column;
-  margin-left: 1.5rem;
 }
 
 .message > p:first-child {
