@@ -1,0 +1,8 @@
+.message-options {
+  margin-left: 16px;
+}
+
+.copy-button {
+  color: var(--quaternary-color);
+  font-size: large;
+}

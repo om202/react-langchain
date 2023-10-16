@@ -1,21 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 
-import { marked } from "marked";
-import PropTypes from "prop-types";
-import { toast } from "react-hot-toast";
-
-import { GiComputerFan } from "react-icons/gi";
-import { AiOutlineCopy, AiOutlineSend, AiOutlineFileAdd } from "react-icons/ai";
+import { AiOutlineSend, AiOutlineFileAdd } from "react-icons/ai";
 
 import LoadingSpinner from "../LoadingSpinner";
 import { openAiChatModelWindowMemory } from "../../openAi/memoryModels";
 
 import "../../css/ChatUI.css";
 import { openAiDocumentModel } from "../../openAi/documentModel";
-
-ChatUI.propTypes = {
-  userName: PropTypes.string.isRequired,
-};
+import ChatUserIcon from "./ChatUserIcon";
+import ChatMessage from "./ChatMessage";
+import ChatOptions from "./ChatOptions";
 
 function ChatUI({ userName }) {
   const [messages, setMessages] = useState([]);
@@ -43,7 +37,7 @@ function ChatUI({ userName }) {
       const selectedFile = event.target.files[0];
       const question = "What is the title of this document?";
       const answer = openAiDocumentModel(selectedFile, question);
-      answer.then(ans => {
+      answer.then((ans) => {
         const newMessage = {
           type: "user",
           text: `Uploaded file: ${selectedFile.name} \n Dummy: Question ${question} : Answer ${ans}`,
@@ -51,11 +45,6 @@ function ChatUI({ userName }) {
         setMessages((prevState) => [...prevState, newMessage]);
       });
     }
-  };
-
-  const copyText = (text) => {
-    navigator.clipboard.writeText(text);
-    toast.success("Copied to clipboard!");
   };
 
   const handleSendMessage = (event) => {
@@ -89,39 +78,14 @@ function ChatUI({ userName }) {
             className="message-container"
             ref={messageContainerRef}
           >
-            {message.type === "user" ? (
-              <div className="message-sender">
-                <span>{userName[0]}</span>
-              </div>
-            ) : (
-              <div className="message-sender message-sender-ai">
-                <GiComputerFan />
-              </div>
-            )}
-            <div
-              key={index}
-              className={
-                message.type === "user" ? "message" : "message message-ai"
-              }
-              dangerouslySetInnerHTML={{ __html: marked(message.text) }}
-            />
-            {message.type === "ai" && (
-              <div className="message-options">
-                <button
-                  className="copy-button button-transparent"
-                  onClick={() => copyText(message.text)}
-                >
-                  <AiOutlineCopy strokeWidth={10} />
-                </button>
-              </div>
-            )}
+            <ChatUserIcon type={message.type} />
+            <ChatMessage message={message} index={index} />
+            {message.type === "ai" && <ChatOptions text={message.text} />}
           </div>
         ))}
         {isLoading && (
           <div className="message-container">
-            <div className="message-sender message-sender-ai">
-              <GiComputerFan />
-            </div>
+            <ChatUserIcon type="ai" />
             <div className="message" style={{ backgroundColor: "transparent" }}>
               <LoadingSpinner />
             </div>

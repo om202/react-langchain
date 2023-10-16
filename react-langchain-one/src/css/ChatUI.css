@@ -24,39 +24,6 @@
   margin-bottom: 24px;
 }
 
-.message-sender {
-  padding: 2px;
-  font-size: large;
-  background-color: var(--orange-color);
-  min-width: 36px;
-  height: 36px;
-  line-height: 0;
-  justify-content: center;
-  align-items: center;
-  font-weight: 300;
-  color: white;
-  text-transform: uppercase;
-  border-radius: 2px;
-}
-
-.message-sender-ai {
-  background-color: var(--success-color);
-}
-
-.message {
-  flex-direction: column;
-  background-color: var(--darker-color);
-  color: var(--light-color);
-  border-radius: 5px;
-  padding: 0px 18px;
-  margin-left: 1.5rem;
-  font-weight: 500;
-}
-
-.message-ai {
-  background-color: var(--darker-color);
-}
-
 .chat-ui-footer {
   position: absolute;
   bottom: 0;
@@ -129,15 +96,6 @@
 
 .button-upload {
   padding-left: 16px;
-}
-
-.message-options {
-  margin-left: 16px;
-}
-
-.copy-button {
-  color: var(--quaternary-color);
-  font-size: large;
 }
 
 /**
