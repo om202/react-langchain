@@ -64,7 +64,7 @@ input[type="text"] {
   --secondary-color: #3a3f4d;
   --tertiary-color: #676c7d;
   --quaternary-color: #8b909d;
-  --light-color: #EDEDED;
+  --light-color: #f0f0f0;
 
   /* Colorful */
   --success-color: #3db89f;

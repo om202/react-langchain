@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 import { AiOutlineSend, AiOutlineFileAdd } from "react-icons/ai";
 
-import LoadingSpinner from "../LoadingSpinner";
+import LoadingSpinner from "../LoadingSpinners/LoadingSpinner";
 import { openAiChatModelWindowMemory } from "../../openAi/memoryModels";
 
 import "../../css/ChatUI.css";
@@ -13,6 +13,7 @@ import {
 import ChatUserIcon from "./ChatUserIcon";
 import ChatMessage from "./ChatMessage";
 import ChatOptions from "./ChatOptions";
+import LoadingSpinner2 from "../LoadingSpinners/LoadingSpinner2";
 
 function ChatUI({ userName }) {
   const [messages, setMessages] = useState([]);
@@ -103,17 +104,28 @@ function ChatUI({ userName }) {
             key={index}
             className="message-container"
             ref={messageContainerRef}
+            style={
+              message.type === "ai"
+                ? { backgroundColor: "rgba(0,0,0,0.1)" }
+                : null
+            }
           >
-            <ChatUserIcon type={message.type} />
-            <ChatMessage message={message} index={index} />
-            {message.type === "ai" && <ChatOptions text={message.text} />}
+            <div className="message-holder">
+              <div className="message-content">
+                <ChatUserIcon type={message.type} />
+                <ChatMessage message={message} index={index} />
+              </div>
+              {message.type === "ai" && <ChatOptions text={message.text} />}
+            </div>
           </div>
         ))}
         {isLoading && (
           <div className="message-container">
-            <ChatUserIcon type="ai" />
-            <div className="message" style={{ backgroundColor: "transparent" }}>
-              <LoadingSpinner />
+            <div className="message-holder">
+              <div className="message-content">
+                <ChatUserIcon type="ai" />
+                <LoadingSpinner/>
+              </div>
             </div>
           </div>
         )}
@@ -145,7 +157,11 @@ function ChatUI({ userName }) {
               name="message"
             />
             <button type="submit">
-              <AiOutlineSend />
+              {isLoading ? (
+                <LoadingSpinner2 />
+              ) : (
+                <AiOutlineSend className="sendButton" />
+              )}
             </button>
           </form>
         </div>

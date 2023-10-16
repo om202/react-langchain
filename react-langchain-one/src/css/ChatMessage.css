@@ -1,13 +1,12 @@
 .message {
   flex-direction: column;
-  background-color: var(--darker-color);
-  color: var(--light-color);
-  border-radius: 5px;
-  padding: 0px 18px;
   margin-left: 1.5rem;
-  font-weight: 500;
 }
 
-.message-ai {
-  background-color: var(--darker-color);
+.message > p:first-child {
+  margin-top: 0;
+}
+
+.message > p:last-child {
+  margin-bottom: 0;
 }

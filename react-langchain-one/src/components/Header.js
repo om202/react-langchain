@@ -7,12 +7,12 @@ export function Header() {
     <div className="header">
       <div className="header__left">
         <div className="header__logo">
-          <BsFillFileEarmarkMedicalFill style={{ marginRight: "5px" }} />
+          <BsFillFileEarmarkMedicalFill className="logoStyle" />
           <span className="title">PDF Expert</span>
         </div>
       </div>
       <div className="header__right">
-        <span></span>
+        <span>Version: 0.1 (Unstable)</span>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import '../css/LoadingSpiner.css';
+import '../../css/LoadingSpinners/LoadingSpiner.css';
 import React from 'react';
 
 export default function LoadingSpinner() {

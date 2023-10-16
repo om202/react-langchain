@@ -1,7 +1,7 @@
 .message-sender {
   padding: 2px;
   font-size: large;
-  background-color: var(--orange-color);
+  background-color: var(--info-color);
   min-width: 36px;
   height: 36px;
   line-height: 0;
