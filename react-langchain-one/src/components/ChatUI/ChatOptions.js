@@ -4,7 +4,6 @@ import { AiOutlineCopy } from "react-icons/ai";
 import "../../css/ChatOptions.css";
 
 export default function ChatOptions({text}) {
-  console.log(text);
   return (
     <div className="message-options">
       <button
