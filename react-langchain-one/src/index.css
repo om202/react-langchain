@@ -13,6 +13,11 @@ input {
   display: flex;
 }
 
+html, body {
+  max-height: 100vh;
+  overflow: hidden;
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -72,6 +77,86 @@ input[type="text"] {
   --info-color: #5da9f9;
   --info-light-color: #5ca6e2;
   --gold-color: #FFD700;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  color: var(--light-color);
+  border: 1px solid var(--quaternary-color);
+}
+
+th,
+td {
+  padding: 8px;
+  text-align: left;
+  border: 1px solid var(--quaternary-color);
+}
+
+th {
+  background-color: var(--secondary-color);
+  color: var(--light-color);
+}
+
+tr:nth-child(even) {
+  background-color: transparent;
+}
+
+tr:hover {
+  background-color: var(--secondary-color);
+}
+
+td:last-child {
+  border-right: none;
+}
+
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  padding: 8px;
+}
+
+li::marker {
+  color: var(--success-color);
+}
+
+li:last-child {
+  border-bottom: none;
+}
+
+code {
+  display: block;
+  background-color: var(--dark-color);
+  color: var(--light-color);
+  padding: 8px;
+  border-radius: 4px;
+  font-family: Consolas, monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  overflow-x: auto;
+}
+
+pre {
+  margin: 0;
+  padding: 16px;
+  background-color: var(--darker-color);
+  border-radius: 4px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+pre code {
+  display: inline;
+  background-color: transparent;
+  padding: 0;
+  border-radius: 0;
+  font-size: inherit;
+  line-height: inherit;
 }
 
 @media screen and (max-width: 460px) {

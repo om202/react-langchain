@@ -1,6 +1,6 @@
 import React from "react";
 import { copyText } from "../../tools/basicTools";
-import { AiOutlineCopy } from "react-icons/ai";
+import { MdContentCopy } from "react-icons/md";
 import "../../css/ChatOptions.css";
 
 export default function ChatOptions({text}) {
@@ -10,7 +10,7 @@ export default function ChatOptions({text}) {
         className="copy-button button-transparent"
         onClick={() => copyText(text)}
       >
-        <AiOutlineCopy strokeWidth={10} />
+        <MdContentCopy />
       </button>
     </div>
   );

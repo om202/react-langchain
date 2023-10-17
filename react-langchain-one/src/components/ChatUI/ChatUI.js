@@ -47,6 +47,15 @@ function ChatUI({ userName }) {
     if (event.target.files) {
       const selectedFile = event.target.files[0];
 
+      if (selectedFile.type !== 'application/pdf') {
+        const newMessage = {
+          type: "ai",
+          text: `Invalid file type. <strong> Please upload a PDF file. </strong>`,
+        };
+        setMessages((prevState) => [...prevState, newMessage]);
+        return;
+      }
+
       const newMessage = {
         type: "ai",
         text: `Uploaded file: ${selectedFile.name}. Document Processing...`,

@@ -5,6 +5,7 @@ import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 const apiKey = process.env.REACT_APP_OPENAI_API_KEY;
 
 const defaultModel = new OpenAI({
+  modelName: "gpt-4",
   openAIApiKey: apiKey,
 });
 

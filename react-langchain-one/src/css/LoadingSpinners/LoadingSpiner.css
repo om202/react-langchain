@@ -1,6 +1,6 @@
 .loader {
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   display: inline-block;
   position: relative;
 }
@@ -8,14 +8,14 @@
 .loader::before {
   content: '';  
   box-sizing: border-box;
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background: white;
   position: absolute;
   left: 0;
   top: 0;
-  animation: animloader 1s linear infinite;
+  animation: animloader 3s linear infinite;
 }
 .loader::after {
   animation-delay: 0s;
