@@ -27,13 +27,16 @@ function ChatUI({ userName }) {
   const fileInputRef = useRef();
 
   useEffect(() => {
+    const newMessage = {
+      type: "ai",
+      text: `<h2>Hi! I'm your personal assistant. 😎 </h2> <hr> <br> 🚀 You can ask me any questions. <h4> ✨ You can upload a PDF file to process it and ask any queation about it. </h4> <pre>This App is in development. After document upload, it only understands the document context. If you want normal conversation, reload the app.</pre> <br> With 💛 by <a href="https://www.linkedin.com/in/omprakashsahkanu/">Omprakash</a> `,
+    };
+    setMessages([newMessage]);
+  }, [0]);
+
+  useEffect(() => {
     messageContainerRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
-
-  /* Facing bug with android keyboard
-  useEffect(() => {
-    sendMessageContainerRef.current?.focus();
-  }, [isLoading]); */
 
   const triggerFileUpload = (e) => {
     e.preventDefault();
@@ -47,7 +50,7 @@ function ChatUI({ userName }) {
     if (event.target.files) {
       const selectedFile = event.target.files[0];
 
-      if (selectedFile.type !== 'application/pdf') {
+      if (selectedFile.type !== "application/pdf") {
         const newMessage = {
           type: "ai",
           text: `Invalid file type. <strong> Please upload a PDF file. </strong>`,

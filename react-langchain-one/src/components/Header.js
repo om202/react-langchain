@@ -12,7 +12,7 @@ export function Header() {
         </div>
       </div>
       <div className="header__right">
-        <span>Version: 0.1 (Unstable)</span>
+        <span>Version: 0.2 (Unstable)</span>
       </div>
     </div>
   );

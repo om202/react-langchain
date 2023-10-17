@@ -29,6 +29,12 @@ body {
   color: var(--light-color);
 }
 
+hr {
+  border: none;
+  border-bottom: 1px solid var(--quaternary-color);
+  margin: 0;
+}
+
 a {
   text-decoration: none;
   color: var(--info-color);
