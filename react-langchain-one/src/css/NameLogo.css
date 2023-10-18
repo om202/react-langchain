@@ -1,0 +1,10 @@
+.logoStyle {
+  margin-right: 5px;
+  color: var(--success-color);
+}
+
+.name-logo-container {
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}

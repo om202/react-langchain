@@ -1,14 +1,13 @@
-import { BsFillFileEarmarkMedicalFill } from "react-icons/bs";
 import "../css/Header.css";
 import React from "react";
+import NameLogo from "./NameLogo";
 
 export function Header() {
   return (
     <div className="header">
       <div className="header__left">
         <div className="header__logo">
-          <BsFillFileEarmarkMedicalFill className="logoStyle" />
-          <span className="title">PDF Expert</span>
+          <NameLogo />
         </div>
       </div>
       <div className="header__right">

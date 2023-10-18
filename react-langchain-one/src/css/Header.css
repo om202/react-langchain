@@ -15,11 +15,6 @@
   backdrop-filter: blur(10px);
 }
 
-.logoStyle {
-  margin-right: 5px;
-  color: var(--success-color);
-}
-
 .header__left {
   align-items: center;
 }
