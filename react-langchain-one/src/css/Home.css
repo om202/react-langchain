@@ -1,0 +1,52 @@
+.homeContainer {
+  margin-top: 60px;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  background-color: #282d4e;
+}
+
+.homeCardHolder {
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
+.homeIntroImage {
+  width: 100%;
+  max-width: 320px;
+}
+
+.homeCard {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 766px;
+  max-width: 766px;
+  flex-direction: column;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.homeCardButtons {
+  width: 320px;
+  max-width: 320px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.homeCardButton {
+  padding: 10px;
+  width: 100%;
+}
+
+.homeCardButton:first-child {
+  background-color: var(--success-color);
+}
+
+.homeCardButton:last-child {
+  background-color: var(--info-color);
+}

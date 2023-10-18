@@ -12,6 +12,7 @@ import { Header } from "./components/Header";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import Home from "./components/Home";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 // const auth = getAuth();
@@ -24,6 +25,10 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 const router = createBrowserRouter([
   {
     path: "/",
+    element: <Home />,
+  },
+  {
+    path: "/app",
     element: <ChatUI />,
   },
   {
