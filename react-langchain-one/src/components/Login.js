@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { firebaseApp } from "../firebase";
-import {
-  getAuth,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import "../css/Login.css";
 import NameLogo from "./NameLogo";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -14,6 +12,8 @@ function Login() {
   const auth = getAuth(firebaseApp);
   const emailInput = React.useRef(null);
   const passwordInput = React.useRef(null);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     emailInput.current.focus();
@@ -29,17 +29,20 @@ function Login() {
 
   const handleLogin = (event) => {
     event.preventDefault();
+    if (email === "" || password === "") {
+      return;
+    }
+
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
         emailInput.current.value = "";
         passwordInput.current.value = "";
         toast.success(`Welcome ${user.email}`);
+        navigate("/");
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        toast.error(`${errorCode}: ${errorMessage}`);
+        toast.error(`Something is not right`);
       });
   };
 
@@ -49,7 +52,7 @@ function Login() {
         <div className="login-logo">
           <NameLogo />
         </div>
-        <h1>Welcome back</h1>
+        <h2>Welcome back</h2>
         <form onSubmit={handleLogin} className="login-form">
           <label>
             <input
@@ -59,6 +62,7 @@ function Login() {
               value={email}
               onChange={handleEmailChange}
               placeholder="Email address"
+              autoComplete="on"
             />
           </label>
           <label>
@@ -69,11 +73,19 @@ function Login() {
               type="password"
               value={password}
               onChange={handlePasswordChange}
+              autoComplete="on"
             />
           </label>
-          <button type="submit" className="login-button">Login</button>
+          <button type="submit" className="login-button">
+            Login
+          </button>
         </form>
-        <div className="login-footer">Don't have account? Sign Up</div>
+        <div className="login-footer">
+          Don't have account?{" "}
+          <a href="/signup" style={{ marginLeft: "8px" }}>
+            Sign Up
+          </a>
+        </div>
       </div>
     </div>
   );

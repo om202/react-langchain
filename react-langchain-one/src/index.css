@@ -1,21 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&family=Raleway+Condensed:wght@400;500;600;700&display=swap');
 
-html,
-body {
+html, body {
+  max-height: 100vh;
+  overflow: scroll;
   margin: 0;
   padding: 0;
   height: 100%;
-}
-
-div,
-form,
-input {
-  display: flex;
-}
-
-html, body {
-  max-height: 100vh;
-  overflow: hidden;
+  color: var(--light-color);
 }
 
 body, #root {
@@ -26,7 +17,12 @@ body, #root {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--secondary-color);
-  color: var(--light-color);
+}
+
+div,
+form,
+input {
+  display: flex;
 }
 
 /* Hide scrollbar for Chrome, Safari, and Opera */
@@ -74,25 +70,23 @@ input {
 }
 
 * {
-  -webkit-transition: all ease-in 0.1s;
-  -moz-transition: all ease-in 0.1s;
-  transition: all ease-in 0.1s;
   box-sizing: border-box;
   line-height: 1.75;
   letter-spacing: 0.01em;
 }
 
 :root {
-  --darker-color: #1a1f2d;
-  --dark-color: #23283a;
-  --secondary-color: #3a3f4d;
-  --tertiary-color: #676c7d;
-  --quaternary-color: #8b909d;
+  --darker-color: #1c1c1c;
+  --dark-color: #262626;
+  --secondary-color: #404040;
+  --tertiary-color: #666666;
+  --quaternary-color: #8c8c8c;
   --light-color: #f0f0f0;
 
   /* Colorful */
   --success-color: #3db89f;
   --orange-color: #e4ad97;
+  --danger-color: #e55c5c;
   --info-color: #5da9f9;
   --info-light-color: #5ca6e2;
   --gold-color: #FFD700;
