@@ -9,7 +9,7 @@ export default function Home() {
       <div className="homeCardHolder homeCardHolder-1">
         <div className="homeCard homeCard-1">
           <img src='/talk.png' alt="chat" className="homeIntroImage" />
-          <h1>Have you ever talked with your documents?</h1>
+          <h1>Talk with PDFs</h1>
           <div className="homeCardButtons">
             <button className="homeCardButton" onClick={() => navigate('/login')}>Login</button>
             <button className="homeCardButton" onClick={() => navigate('/app')}>Try now </button>
