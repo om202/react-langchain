@@ -79,7 +79,8 @@
 }
 
 .send-message-form input[type="text"]::placeholder {
-  color: var(--quaternary-color);
+  font-style: italic;
+  color: var(--success-color);
 }
 
 .forms-container:focus-within {

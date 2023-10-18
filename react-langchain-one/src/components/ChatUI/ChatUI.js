@@ -168,17 +168,13 @@ function ChatUI({ userName }) {
             <input
               ref={sendMessageContainerRef}
               disabled={isLoading}
-              placeholder={isLoading ? "Thinking..." : "Ask anything!"}
+              placeholder={isLoading ? "Thinking..." : "Write a message..."}
               autoComplete="off"
               type="text"
               name="message"
             />
             <button type="submit">
-              {isLoading ? (
-                <LoadingSpinner2 />
-              ) : (
-                <AiOutlineSend className="sendButton" />
-              )}
+            {isLoading ? null :  <AiOutlineSend className="sendButton" />}
             </button>
           </form>
         </div>

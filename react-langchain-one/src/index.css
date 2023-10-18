@@ -76,21 +76,23 @@ input {
 }
 
 :root {
-  --darker-color: #1c1c1c;
-  --dark-color: #262626;
-  --secondary-color: #404040;
-  --tertiary-color: #666666;
-  --quaternary-color: #8c8c8c;
-  --light-color: #f0f0f0;
+  /* Neutral Colors */
+  --darker-color: #121212;  /* Slightly Lighter Dark */
+  --dark-color: #242424;    /* True Dark */
+  --secondary-color: #3a3a3a; /* A Bit Lighter */
+  --tertiary-color: #707070;  /* Medium Grey */
+  --quaternary-color: #a5a5a5; /* Light Grey */
+  --light-color: #fafafa;  /* Almost White */
 
-  /* Colorful */
-  --success-color: #3db89f;
-  --orange-color: #e4ad97;
-  --danger-color: #e55c5c;
-  --info-color: #5da9f9;
-  --info-light-color: #5ca6e2;
-  --gold-color: #FFD700;
+  /* Vibrant Colors */
+  --success-color: #32c48d;     /* Brighter Green */
+  --orange-color: #ff926b;     /* Vibrant Orange */
+  --danger-color: #ff5757;     /* Bright Red */
+  --info-color: #4d8ff7;       /* Bright Blue */
+  --info-light-color: #57a1ff; /* Lighter Bright Blue */
+  --gold-color: #FFC300;       /* Rich Gold */
 }
+
 
 table {
   border-collapse: collapse;
