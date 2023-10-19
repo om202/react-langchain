@@ -13,7 +13,8 @@ import {
 import ChatUserIcon from "./ChatUserIcon";
 import ChatMessage from "./ChatMessage";
 import ChatOptions from "./ChatOptions";
-import LoadingSpinner2 from "../LoadingSpinners/LoadingSpinner2";
+import { useSelector } from "react-redux";
+import { NotAllowed } from "../NotAllowed";
 
 function ChatUI({ userName }) {
   const [messages, setMessages] = useState([]);
@@ -25,6 +26,10 @@ function ChatUI({ userName }) {
   const messageContainerRef = useRef();
   const sendMessageContainerRef = useRef();
   const fileInputRef = useRef();
+
+  const authUser = useSelector((state) => state.authentication.authUser);
+  const authStatus = useSelector((state) => state.authentication.authStatus);
+  const authError = useSelector((state) => state.authentication.authError);
 
   useEffect(() => {
     const newMessage = {
@@ -110,76 +115,86 @@ function ChatUI({ userName }) {
   };
 
   return (
-    <div className="chat-container">
-      <div className="messages-container">
-        {messages.map((message, index) => (
-          <div
-            key={index}
-            className="message-container"
-            ref={messageContainerRef}
-            style={
-              message.type === "ai"
-                ? { backgroundColor: "rgba(0,0,0,0.15)" }
-                : null
-            }
-          >
-            <div className="message-holder">
-              <div className="message-content">
-                {message.type === "user" && (
-                  <ChatUserIcon type={message.type} />
-                )}
-                <ChatMessage message={message} index={index} />
+    <>
+      {!authUser ? (
+        authStatus === "loading" ? (
+          <LoadingSpinner />
+        ) : (
+          <NotAllowed />
+        )
+      ) : (
+        <div className="chat-container">
+          <div className="messages-container">
+            {messages.map((message, index) => (
+              <div
+                key={index}
+                className="message-container"
+                ref={messageContainerRef}
+                style={
+                  message.type === "ai"
+                    ? { backgroundColor: "rgba(0,0,0,0.15)" }
+                    : null
+                }
+              >
+                <div className="message-holder">
+                  <div className="message-content">
+                    {message.type === "user" && (
+                      <ChatUserIcon type={message.type} />
+                    )}
+                    <ChatMessage message={message} index={index} />
+                  </div>
+                  {message.type === "ai" && <ChatOptions text={message.text} />}
+                </div>
               </div>
-              {message.type === "ai" && <ChatOptions text={message.text} />}
+            ))}
+            {isLoading && (
+              <div
+                className="message-container"
+                style={{ backgroundColor: "rgba(0,0,0,0.15)" }}
+              >
+                <div className="message-holder">
+                  <div className="message-content">
+                    <LoadingSpinner />
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+          <div className="chat-ui-footer">
+            <div className="forms-container">
+              <form className="upload-form">
+                <button
+                  className="button-upload"
+                  onClick={(e) => triggerFileUpload(e)}
+                >
+                  <AiOutlineFileAdd />
+                </button>
+                <input
+                  onChange={(e) => handleFileUpload(e)}
+                  type="file"
+                  accept=".pdf"
+                  style={{ display: "none" }}
+                  ref={fileInputRef}
+                />
+              </form>
+              <form onSubmit={handleSendMessage} className="send-message-form">
+                <input
+                  ref={sendMessageContainerRef}
+                  disabled={isLoading}
+                  placeholder={isLoading ? "Thinking..." : "Write a message..."}
+                  autoComplete="off"
+                  type="text"
+                  name="message"
+                />
+                <button type="submit">
+                  {isLoading ? null : <AiOutlineSend className="sendButton" />}
+                </button>
+              </form>
             </div>
           </div>
-        ))}
-        {isLoading && (
-          <div
-            className="message-container"
-            style={{ backgroundColor: "rgba(0,0,0,0.15)" }}
-          >
-            <div className="message-holder">
-              <div className="message-content">
-                <LoadingSpinner />
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
-      <div className="chat-ui-footer">
-        <div className="forms-container">
-          <form className="upload-form">
-            <button
-              className="button-upload"
-              onClick={(e) => triggerFileUpload(e)}
-            >
-              <AiOutlineFileAdd />
-            </button>
-            <input
-              onChange={(e) => handleFileUpload(e)}
-              type="file"
-              accept=".pdf"
-              style={{ display: "none" }}
-              ref={fileInputRef}
-            />
-          </form>
-          <form onSubmit={handleSendMessage} className="send-message-form">
-            <input
-              ref={sendMessageContainerRef}
-              disabled={isLoading}
-              placeholder={isLoading ? "Thinking..." : "Write a message..."}
-              autoComplete="off"
-              type="text"
-              name="message"
-            />
-            <button type="submit">
-            {isLoading ? null :  <AiOutlineSend className="sendButton" />}
-            </button>
-          </form>
         </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 }
 

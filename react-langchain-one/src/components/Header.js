@@ -1,8 +1,11 @@
 import "../css/Header.css";
 import React from "react";
 import NameLogo from "./NameLogo";
+import { useSelector } from "react-redux";
 
 export function Header() {
+  const authUser = useSelector((state) => state.authentication.authUser);
+
   return (
     <div className="header">
       <div className="header__left">
@@ -11,7 +14,7 @@ export function Header() {
         </div>
       </div>
       <div className="header__right">
-        <span>Version: 0.2 (Unstable)</span>
+        <span>{authUser}</span>
       </div>
     </div>
   );

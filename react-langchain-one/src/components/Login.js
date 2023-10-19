@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { firebaseApp } from "../firebase";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import "../css/Login.css";
 import NameLogo from "./NameLogo";
-import toast from "react-hot-toast";
+import { loginUsingEmailPassword } from "../services/authActions";
+import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from "react-router";
+import toast from "react-hot-toast";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const auth = getAuth(firebaseApp);
   const emailInput = React.useRef(null);
   const passwordInput = React.useRef(null);
+  const authError = useSelector((state) => state.authentication.authError);
 
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const navigator = useNavigate();
 
   useEffect(() => {
     emailInput.current.focus();
@@ -29,21 +30,11 @@ function Login() {
 
   const handleLogin = (event) => {
     event.preventDefault();
-    if (email === "" || password === "") {
+    if (email === "" || password === "" ) {
       return;
     }
 
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        emailInput.current.value = "";
-        passwordInput.current.value = "";
-        toast.success(`Welcome ${user.email}`);
-        navigate("/");
-      })
-      .catch((error) => {
-        toast.error(`Something is not right`);
-      });
+    dispatch(loginUsingEmailPassword(email, password, () => navigator("/app")));
   };
 
   return (
@@ -53,6 +44,7 @@ function Login() {
           <NameLogo />
         </div>
         <h2>Welcome back</h2>
+        {authError && "Invalid email or password"}
         <form onSubmit={handleLogin} className="login-form">
           <label>
             <input
