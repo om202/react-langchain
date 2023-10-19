@@ -12,7 +12,7 @@ export default function Home() {
           <h1>Talk with PDFs</h1>
           <div className="homeCardButtons">
             <button className="homeCardButton" onClick={() => navigate('/login')}>Login</button>
-            <button className="homeCardButton" onClick={() => navigate('/app')}>Try now </button>
+            <button className="homeCardButton" onClick={() => navigate('/signup')}>Sign Up </button>
           </div>
         </div>
       </div>

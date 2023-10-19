@@ -1,22 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { firebaseApp } from "../firebase";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import "../css/Login.css";
 import NameLogo from "./NameLogo";
-import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
+import { signUpUsingEmailPassword } from "../services/authActions";
+import { useDispatch } from "react-redux";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const auth = getAuth(firebaseApp);
-  const emailInput = React.useRef(null);
-  const passwordInput = React.useRef(null);
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [isEmailValid, setIsEmailValid] = useState(true);
   const [isPasswordValid, setIsPasswordValid] = useState(true);
+  const [passwordDonotMatch, setPasswordDonotMatch] = useState(false);
   const [submitButtonClicked, setSubmitButtonClicked] = useState(false);
 
+  const emailInput = React.useRef(null);
+  const passwordInput = React.useRef(null);
+  const confirmPasswordInput = React.useRef(null);
+
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
   const passwordRegex = /^.{8,}$/;
@@ -25,6 +28,7 @@ function Login() {
     emailInput.current.focus();
     emailInput.current.value = "";
     passwordInput.current.value = "";
+    confirmPasswordInput.current.value = "";
   }, []);
 
   const handleEmailChange = (event) => {
@@ -32,10 +36,8 @@ function Login() {
 
     if (!emailRegex.test(event.target.value)) {
       setIsEmailValid(false);
-      emailInput.current.style.outline = "1px solid var(--danger-color)";
     } else {
       setIsEmailValid(true);
-      emailInput.current.style.outline = "1px solid var(--success-color)";
     }
   };
 
@@ -44,10 +46,18 @@ function Login() {
 
     if (passwordRegex.test(event.target.value)) {
       setIsPasswordValid(true);
-      passwordInput.current.style.outline = "1px solid var(--success-color)";
     } else {
       setIsPasswordValid(false);
-      passwordInput.current.style.outline = "1px solid var(--danger-color)";
+    }
+  };
+
+  const handleConfirmPassword = (event) => {
+    setConfirmPassword(event.target.value);
+
+    if (password === event.target.value) {
+      setPasswordDonotMatch(false);
+    } else {
+      setPasswordDonotMatch(true);
     }
   };
 
@@ -55,22 +65,10 @@ function Login() {
     event.preventDefault();
     setSubmitButtonClicked(true);
 
-    if (!isEmailValid || !isPasswordValid || email === "" || password === "") {
+    if (!isEmailValid || !isPasswordValid || passwordDonotMatch || email === "" || password === "") {
       return;
     }
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        emailInput.current.value = "";
-        passwordInput.current.value = "";
-        toast.success(`Sucess! Welcome ${user.email}`);
-        navigate("/");
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        toast.error(`${errorCode}: ${errorMessage}`);
-      });
+    dispatch(signUpUsingEmailPassword(email, password, () => navigate("/app")));
   };
 
   return (
@@ -96,7 +94,7 @@ function Login() {
 
           {!isPasswordValid && submitButtonClicked && (
             <span className="not-valid-text">
-              Password must be  at least 8 characters long.
+              Password must be at least 8 characters long.
             </span>
           )}
           <input
@@ -106,6 +104,17 @@ function Login() {
             type="password"
             value={password}
             onChange={handlePasswordChange}
+          />
+          {passwordDonotMatch && confirmPassword && (
+            <span className="not-valid-text">Passwords do not match.</span>
+          )}
+          <input
+            className="login-input"
+            ref={confirmPasswordInput}
+            placeholder="Confirm Password"
+            type="password"
+            value={confirmPassword}
+            onChange={handleConfirmPassword}
           />
           <button type="submit" className="login-button">
             Sign Up
