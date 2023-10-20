@@ -10,7 +10,6 @@ export default function Home() {
         <div className="homeCard homeCard-1">
           <img src='/talk.png' alt="chat" className="homeIntroImage" />
           <h1>Talk with PDFs</h1>
-          <pre  style={{color: `var(--danger-color)`, marginBottom: '1rem'}}><strong>API Status: Error</strong><br></br>Sorry, OpenAI API is having issues. Please visit back later.</pre>
           <div className="homeCardButtons">
             <button className="homeCardButton" onClick={() => navigate('/login')}>Login</button>
             <button className="homeCardButton" onClick={() => navigate('/signup')}>Sign Up </button>
