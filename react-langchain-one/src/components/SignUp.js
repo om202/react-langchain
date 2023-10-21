@@ -77,7 +77,7 @@ function Login() {
         <div className="login-logo">
           <NameLogo />
         </div>
-        <h2>Create Account</h2>
+        <h2 className="gradient-text">Create Account</h2>
 
         <form onSubmit={handleLogin} className="login-form">
           {!isEmailValid && submitButtonClicked && (

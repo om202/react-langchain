@@ -43,7 +43,7 @@ function Login() {
         <div className="login-logo">
           <NameLogo />
         </div>
-        <h2>Welcome back</h2>
+        <h2 className="gradient-text">Welcome back</h2>
         {authError && "Invalid email or password"}
         <form onSubmit={handleLogin} className="login-form">
           <label>

@@ -1,8 +1,7 @@
 .app-container {
   flex: 1;
-  height: 100svh;
+  min-height: 100vh;
   flex-direction: column;
   overflow: auto;
-  background-color: var(--secondary-color);
   background-size: cover;
 }

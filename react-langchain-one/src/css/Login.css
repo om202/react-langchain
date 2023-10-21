@@ -1,7 +1,11 @@
 .login-container {
-  height: 100%;
+  min-height: 100vh;
   flex: 1;
   justify-content: center;
+  background-color: var(--darker-color);
+  background-image: radial-gradient(#1b1e52 0.5px, var(--darker-color) 0.5px);
+  background-size: 10px 10px;
+  color: var(--quaternary-color);
 }
 
 .login-container-holder {

@@ -16,7 +16,7 @@ import ChatOptions from "./ChatOptions";
 import { useSelector } from "react-redux";
 import { NotAllowed } from "../NotAllowed";
 
-function ChatUI({ userName }) {
+function ChatUI() {
   const [messages, setMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [documentProcessing, setDocumentProcessing] = useState(false);
@@ -27,7 +27,8 @@ function ChatUI({ userName }) {
   const sendMessageContainerRef = useRef();
   const fileInputRef = useRef();
 
-  const authUser = useSelector((state) => state.authentication.authUser);
+  const authUser = 'test'
+  // const authUser = useSelector((state) => state.authentication.authUser);
   const authStatus = useSelector((state) => state.authentication.authStatus);
   const authError = useSelector((state) => state.authentication.authError);
 
